@@ -1,3 +1,4 @@
+# This is the Remove Inventory file RemInv.py
 def remove_item():
     """Removes all records of an item from the inventory based on item name."""
     from Inventory import import_inventory, export_inventory

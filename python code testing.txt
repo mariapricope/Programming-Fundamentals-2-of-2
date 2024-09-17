@@ -1,0 +1,68 @@
+
+Testing:
+
+Enter your choice (1-5) or type 'exit' to abort: 1
+Enter item name: item1
+Enter item quantity: 50
+Enter item price: 99.63
+Inventory saved to Excel file.
+Item 'item1' added/updated successfully.
+
+Inventory Management System
+1. Add Item
+2. Edit Item
+3. View Inventory
+4. Remove Item
+5. Exit
+Enter your choice (1-5) or type 'exit' to abort: 2
+Enter item name to edit (or type 'exit' to cancel): item1
+Current details - Name: item1, Quantity: 50, Price: $99.63
+Enter new name (leave blank to keep current): 
+Enter new quantity (leave blank to keep current): 90
+Enter new price (leave blank to keep current): 99.96
+Inventory saved to Excel file.
+Item ID 1 updated successfully.
+
+Inventory Management System
+1. Add Item
+2. Edit Item
+3. View Inventory
+4. Remove Item
+5. Exit
+Enter your choice (1-5) or type 'exit' to abort: 3
+
+Current Inventory:
++-----------+--------+------------+---------+
+|   Item ID | Name   |   Quantity |   Price |
++===========+========+============+=========+
+|         1 | item1  |         90 |   99.96 |
++-----------+--------+------------+---------+
+
+Inventory Management System
+1. Add Item
+2. Edit Item
+3. View Inventory
+4. Remove Item
+5. Exit
+Enter your choice (1-5) or type 'exit' to abort: 4
+Enter item name to remove (or type 'exit' to cancel): item1
+All items with the name 'item1' have been removed.
+Inventory saved to Excel file.
+
+Inventory Management System
+1. Add Item
+2. Edit Item
+3. View Inventory
+4. Remove Item
+5. Exit
+Enter your choice (1-5) or type 'exit' to abort: 3
+Inventory is empty.
+
+Inventory Management System
+1. Add Item
+2. Edit Item
+3. View Inventory
+4. Remove Item
+5. Exit
+Enter your choice (1-5) or type 'exit' to abort: 5
+Exiting the system.

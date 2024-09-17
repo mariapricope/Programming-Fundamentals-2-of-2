@@ -1,3 +1,4 @@
+# This is the Inventory file Inventory.py designed to read and update the data in the Excel file
 import openpyxl
 
 def import_inventory(excel_file='inventory.xlsx'):

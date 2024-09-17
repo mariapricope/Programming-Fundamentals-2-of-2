@@ -1,3 +1,4 @@
+# This is the View Inventory file ViewInv.py
 def view_inventory():
     """Displays the current inventory in a tabular format."""
     from Inventory import import_inventory

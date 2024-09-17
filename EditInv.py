@@ -1,3 +1,4 @@
+# This is the Edit Inventory file EditInv.py
 def edit_item():
     """Edits an existing item in the inventory by name."""
     from Inventory import import_inventory, export_inventory
