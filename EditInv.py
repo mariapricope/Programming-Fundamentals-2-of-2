@@ -1,40 +1,55 @@
-# This is the Edit Inventory file EditInv.py
-def edit_item():
-    """Edits an existing item in the inventory by name."""
-    from Inventory import import_inventory, export_inventory
+# EditInv.py
+from Inventory import Inventory
+from Utils import get_input  # Import the helper function
 
-    inventory = import_inventory()
 
-    if not inventory:
-        print("Inventory is empty. No item to edit.")
-        return
+class EditInventory:
+    """
+    Class to handle editing items in the inventory.
+    """
 
-    name = input("Enter item name to edit (or type 'exit' to cancel): ").strip().lower()
-    if name == "exit":
-        print("Edit operation cancelled.")
-        return
+    def __init__(self, inventory):
+        """
+        Initialize with an inventory object.
+        
+        :param inventory: The Inventory object to modify.
+        """
+        self.inventory = inventory
 
-    # Find item by name
-    item_found = False
-    for i, item in enumerate(inventory):
-        if item[1].strip().lower() == name:
-            item_found = True
-            print(f"Current details - Name: {item[1]}, Quantity: {item[2]}, Price: £{item[3]:.2f}")
-            new_name = input("Enter new name (leave blank to keep current): ").strip()
-            new_quantity = input("Enter new quantity (leave blank to keep current): ").strip()
-            new_price = input("Enter new price (leave blank to keep current): ").strip()
+    def edit_item(self):
+        """
+        Edits an item in the inventory by collecting input from the user.
+        """
+        if not self.inventory.inventory:
+            print("Inventory is empty. No item to edit.")
+            return
 
-            # Update item details if provided
-            if new_name:
-                inventory[i] = (item[0], new_name, inventory[i][2], inventory[i][3])
-            if new_quantity:
-                inventory[i] = (item[0], inventory[i][1], int(new_quantity), inventory[i][3])
-            if new_price:
-                inventory[i] = (item[0], inventory[i][1], inventory[i][2], float(new_price))
+        item_id = int(get_input("Enter item ID to edit (or type 'exit' to quit): ").strip())
+        item_found = False
 
-            export_inventory(inventory)
-            print(f"Item ID {item[0]} updated successfully.")
-            break
+        for i, item in enumerate(self.inventory.inventory):
+            if item[0] == item_id:
+                item_found = True
+                print(f"Current details - Name: {item[1]}, Quantity: {item[2]}, Price: £{item[3]:.2f}")
 
-    if not item_found:
-        print(f"No items with the name '{name}' found.")
+                # Collect new details from user
+                name = get_input("Enter new name (leave blank to keep current or 'exit' to quit): ").strip()
+                quantity = get_input("Enter new quantity (leave blank to keep current or 'exit' to quit): ").strip()
+                price = get_input("Enter new price (leave blank to keep current or 'exit' to quit): ").strip()
+
+                # Update details only if input is provided
+                if name:
+                    item = (item[0], name, item[2], item[3])
+                if quantity:
+                    item = (item[0], item[1], int(quantity), item[3])
+                if price:
+                    item = (item[0], item[1], item[2], float(price))
+
+                # Update item in the list and export the inventory
+                self.inventory.inventory[i] = item
+                self.inventory.export_inventory()
+                print(f"Item ID {item_id} updated successfully.")
+                break
+
+        if not item_found:
+            print(f"Item ID {item_id} not found.")

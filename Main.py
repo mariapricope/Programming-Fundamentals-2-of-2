@@ -1,11 +1,15 @@
-# This is the Main Inventory file Main.py
-from AddInv import add_item
-from EditInv import edit_item
-from RemInv import remove_item
-from ViewInv import view_inventory
+# Main.py
+from Inventory import Inventory
+from AddInv import AddInventory
+from EditInv import EditInventory
+from RemInv import RemoveInventory
+from ViewInv import ViewInventory
+from Utils import get_input  
 
 def display_menu():
-    """Displays the main menu for the Inventory Management System."""
+    """
+    Displays the menu options for the Inventory Management System.
+    """
     print("\nInventory Management System")
     print("1. Add Item")
     print("2. Edit Item")
@@ -13,25 +17,36 @@ def display_menu():
     print("4. Remove Item")
     print("5. Exit")
 
+
 def main():
-    """Main function that runs the inventory system in a loop until the user exits."""
+    """
+    The main function that handles user input and interacts with the Inventory.
+    """
+    inventory = Inventory()  # Create the inventory object
+
+    add_inv = AddInventory(inventory)
+    edit_inv = EditInventory(inventory)
+    remove_inv = RemoveInventory(inventory)
+    view_inv = ViewInventory(inventory)
+
     while True:
         display_menu()
-        choice = input("Enter your choice (1-5) or type 'exit' to abort: ").strip().lower()
-        
+        choice = get_input("Enter your choice (1-5): ").strip()
+
         if choice == '1':
-            add_item()
+            add_inv.add_item()
         elif choice == '2':
-            edit_item()
+            edit_inv.edit_item()
         elif choice == '3':
-            view_inventory()
+            view_inv.view_inventory()
         elif choice == '4':
-            remove_item()
-        elif choice == '5' or choice == 'exit':
+            remove_inv.remove_item()
+        elif choice == '5':
             print("Exiting the system.")
-            break  # Exit the loop and end the programme
+            break
         else:
             print("Invalid choice. Please enter a number between 1 and 5.")
 
+
 if __name__ == "__main__":
-    main()  # Run the main function if this file is executed directly
+    main()

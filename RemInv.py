@@ -1,24 +1,39 @@
-# This is the Remove Inventory file RemInv.py
-def remove_item():
-    """Removes all records of an item from the inventory based on item name."""
-    from Inventory import import_inventory, export_inventory
+# RemInv.py
+from Inventory import Inventory
+from Utils import get_input  # Import the helper function
 
-    inventory = import_inventory()
 
-    if not inventory:
-        print("Inventory is empty. No item to remove.")
-        return
+class RemoveInventory:
+    """
+    Class to handle removing items from the inventory.
+    """
 
-    name = input("Enter item name to remove (or type 'exit' to cancel): ").strip().lower()
-    if name == "exit":
-        print("Remove operation cancelled.")
-        return
+    def __init__(self, inventory):
+        """
+        Initialize with an inventory object.
+        
+        :param inventory: The Inventory object to modify.
+        """
+        self.inventory = inventory
 
-    # Create a new inventory list excluding all items with the specified name
-    new_inventory = [item for item in inventory if item[1].strip().lower() != name]
+    def remove_item(self):
+        """
+        Removes an item from the inventory by collecting input from the user.
+        """
+        if not self.inventory.inventory:
+            print("Inventory is empty. No item to remove.")
+            return
 
-    if len(new_inventory) == len(inventory):
-        print(f"No items with the name '{name}' were found in the inventory.")
-    else:
-        print(f"All items with the name '{name}' have been removed.")
-        export_inventory(new_inventory)
+        item_id = int(get_input("Enter item ID to remove (or type 'exit' to quit): ").strip())
+        item_found = False
+
+        for i, item in enumerate(self.inventory.inventory):
+            if item[0] == item_id:
+                item_found = True
+                self.inventory.inventory.pop(i)
+                self.inventory.export_inventory()
+                print(f"Item '{item[1]}' removed successfully.")
+                break
+
+        if not item_found:
+            print(f"Item ID {item_id} not found.")
