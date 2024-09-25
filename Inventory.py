@@ -9,7 +9,7 @@ class Inventory:
 
     def __init__(self, excel_file='inventory.xlsx'):
         """
-        Initializes the Inventory class with the Excel file.
+        Initialises the Inventory class with the Excel file.
         
         :param excel_file: The name of the Excel file to store the inventory (default is 'inventory.xlsx').
         """
