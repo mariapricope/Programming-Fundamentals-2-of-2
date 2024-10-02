@@ -10,7 +10,7 @@ class AddInventory:
 
     def __init__(self, inventory):
         """
-        Initialize with an inventory object.
+        Initialise with an inventory object.
         
         :param inventory: The Inventory object to modify.
         """
